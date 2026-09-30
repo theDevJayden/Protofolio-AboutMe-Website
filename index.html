@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,11 +31,8 @@
       </ul>
 
       <div class="nav-actions">
-        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
-          <i class="fas fa-sun" id="theme-icon"></i>
-        </button>
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
-          <i class="fas fa-bars"></i>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
         </button>
       </div>
     </div>
@@ -43,81 +40,88 @@
 
   <main>
     <!-- Hero / About Me Section -->
-    <section id="about" class="section hero-section">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-image-wrapper reveal">
-            <img src="assets/profile.jpeg" alt="Jayden Samuel Kurniawan" class="hero-image">
-          </div>
+    <section id="about" class="hero">
+      <div class="container hero-inner">
 
-          <div class="hero-content reveal">
-            <div class="hero-badge">
-              <span class="pulse-dot"></span> Open for Engineering Opportunities
-            </div>
-            <h1 class="hero-title">
-              Hi, I'm <span class="gradient-text">Jayden Samuel Kurniawan</span>
-            </h1>
-            <p class="hero-bio">
-              Computer Science undergraduate from Bina Nusantara University. 
-              What drives me is the ability to work in teams to bridge physical hardware, cloud software, and interactive interfaces to solve problems like data reliability in Indonesia.
-            </p>
-            <div class="btn-group">
-              <a href="#projects" class="btn btn-primary">
-                View Projects <i class="fas fa-arrow-right"></i>
-              </a>
-              <a href="#socials" class="btn btn-secondary">
-                Get In Touch <i class="fas fa-envelope"></i>
-              </a>
-            </div>
+        <div class="hero-text">
+          <h1 class="hero-name">
+            <span class="hero-name-line">Jayden</span>
+            <span class="hero-name-line">Samuel</span>
+            <span class="hero-name-line hero-name-accent">Kurniawan</span>
+          </h1>
+
+          <p class="hero-statement">
+            <span class="reveal-line" aria-label="Hardware, cloud software, and the interfaces between them.">
+              <span class="reveal-text" aria-hidden="true">Hardware, cloud software, and the interfaces between them.</span>
+              <span class="reveal-bar" aria-hidden="true"></span>
+            </span>
+          </p>
+
+          <p class="hero-bio">
+            Computer Science undergraduate from Bina Nusantara University.
+            What drives me is the ability to work in teams to bridge physical hardware, cloud software, and interactive interfaces to solve problems like data reliability in Indonesia.
+          </p>
+
+          <div class="btn-group">
+            <a href="#projects" class="btn btn-primary">View three projects</a>
+            <a href="#socials" class="btn btn-secondary">Contact details</a>
           </div>
         </div>
+
+        <figure class="hero-portrait">
+          <img src="assets/profile-cutout.png" alt="Jayden Samuel Kurniawan" class="hero-portrait-img" width="302" height="929">
+          <figcaption class="hero-portrait-caption">
+            <span class="hero-caption-rule" aria-hidden="true"></span>
+            Open for engineering opportunities
+          </figcaption>
+        </figure>
+
       </div>
     </section>
 
     <!-- Specializations Section -->
     <section id="specializations" class="section">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Core Competencies</span>
-          <h2 class="section-title">My Specializations</h2>
-          <p class="section-subtitle">Bridging hardware, intelligence, and modern software design.</p>
-        </div>
+        <header class="spec-header reveal">
+          <h2 class="spec-heading display-marker">
+            <span class="reveal-line" aria-label="What I build">
+              <span class="reveal-text" aria-hidden="true">What I build</span>
+              <span class="reveal-bar" aria-hidden="true"></span>
+            </span>
+          </h2>
+          <p class="spec-intro">Hardware, the model that reads it, and the interface on top.</p>
+        </header>
 
-        <div class="spec-grid">
-          <div class="glass-card spec-card reveal">
-            <div class="spec-icon">
-              <i class="fas fa-brain"></i>
+        <ol class="spec-rows">
+          <li class="spec-row spec-row--lead reveal">
+            <span class="spec-index tabular" aria-hidden="true">01</span>
+            <div class="spec-body">
+              <h3 class="spec-title">Machine Learning</h3>
+              <p class="spec-text">Analyzing complex datasets and building predictive models using tools like Google Colab, TensorFlow, and Scikit-Learn.</p>
             </div>
-            <h3>Machine Learning</h3>
-            <p>Analyzing complex datasets and building predictive models using tools like Google Colab, TensorFlow, and Scikit-Learn.</p>
-          </div>
+          </li>
 
-          <div class="glass-card spec-card reveal">
-            <div class="spec-icon">
-              <i class="fas fa-microchip"></i>
+          <li class="spec-row reveal">
+            <span class="spec-index tabular" aria-hidden="true">02</span>
+            <div class="spec-body">
+              <h3 class="spec-title">IoT &amp; Systems Architecture</h3>
+              <p class="spec-text">Connecting microcontrollers, sensors, and cloud systems to user-facing dashboards using Arduino IDE and ESP32 platforms.</p>
             </div>
-            <h3>IoT & Systems Architecture</h3>
-            <p>Connecting microcontrollers, sensors, and cloud systems to user-facing dashboards using Arduino IDE and ESP32 platforms.</p>
-          </div>
+          </li>
 
-          <div class="glass-card spec-card reveal">
-            <div class="spec-icon">
-              <i class="fas fa-laptop-code"></i>
+          <li class="spec-row spec-row--minor reveal">
+            <span class="spec-index tabular" aria-hidden="true">03</span>
+            <div class="spec-body">
+              <h3 class="spec-title">Software &amp; Design</h3>
+              <p class="spec-text">Building mobile and web solutions with Android Studio, integrated with high-fidelity interactive prototypes designed in Figma.</p>
             </div>
-            <h3>Software & Design</h3>
-            <p>Building mobile and web solutions with Android Studio, integrated with high-fidelity interactive prototypes designed in Figma.</p>
-          </div>
-        </div>
+          </li>
+        </ol>
 
-        <div class="toolkit-banner reveal">
-          <div class="toolkit-icon">
-            <i class="fas fa-wand-magic-sparkles gradient-text"></i>
-          </div>
-          <div class="toolkit-content">
-            <h4>Toolkits & Engineering Workflow</h4>
-            <p>I actively leverage advanced AI tools like Gemini to accelerate my documentation, optimize my workflows, and enhance the engineering process behind my project building.</p>
-          </div>
-        </div>
+        <p class="spec-note reveal">
+          <span class="spec-note-rule" aria-hidden="true"></span>
+          I use Gemini to draft documentation while I build.
+        </p>
       </div>
     </section>
 

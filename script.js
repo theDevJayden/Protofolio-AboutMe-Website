@@ -1,57 +1,35 @@
 /**
  * Jayden Samuel Kurniawan - Portfolio Interactivity
- * Features: Light/Dark Theme Switcher, Mobile Nav Menu, Image Carousel, Scroll Reveal
+ * Features: Mobile Nav Menu, Image Carousel, Scroll Reveal, Text Highlight,
+ * Image Lightbox. Dark-only identity, so there is no theme switcher.
  */
 
+// Set as early as possible: CSS keys every reveal/highlight start-state off
+// this class, so if the script fails the content stays visible.
+document.documentElement.classList.add('js-enabled');
+
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Theme Toggle Logic
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const themeIcon = document.getElementById('theme-icon');
-  
-  // Check persisted preference or default to dark
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcon(newTheme);
-    });
-  }
-
-  function updateThemeIcon(theme) {
-    if (!themeIcon) return;
-    if (theme === 'light') {
-      themeIcon.className = 'fas fa-moon';
-      themeToggleBtn.setAttribute('aria-label', 'Switch to dark theme');
-    } else {
-      themeIcon.className = 'fas fa-sun';
-      themeToggleBtn.setAttribute('aria-label', 'Switch to light theme');
-    }
-  }
-
-  // 2. Mobile Menu Navigation
+  // 1. Mobile Menu Navigation
   const mobileToggle = document.getElementById('mobile-toggle');
   const navMenu = document.getElementById('nav-menu');
   const navLinks = document.querySelectorAll('.nav-link');
 
   if (mobileToggle && navMenu) {
+    const setMenu = (isOpen) => {
+      navMenu.classList.toggle('open', isOpen);
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileToggle.innerHTML = isOpen
+        ? '<i class="fas fa-times" aria-hidden="true"></i>'
+        : '<i class="fas fa-bars" aria-hidden="true"></i>';
+    };
+
     mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      const isOpen = navMenu.classList.contains('open');
-      mobileToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      setMenu(!navMenu.classList.contains('open'));
     });
 
     // Close mobile menu when a nav link is clicked
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-      });
+      link.addEventListener('click', () => setMenu(false));
     });
   }
 
@@ -73,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. Scroll Reveal Animation using IntersectionObserver
+  // 2. Scroll Reveal + text highlight (IntersectionObserver)
   const revealElements = document.querySelectorAll('.reveal');
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -90,7 +68,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // 4. Image Carousels Handler (Supports multiple carousels)
+  // Text highlight: a signal bar wipes across the line, then retracts from
+  // its right edge to uncover the words. CSS owns the timing; this only
+  // toggles the class when the line enters view.
+  const highlightLines = document.querySelectorAll('.reveal-line');
+
+  if (highlightLines.length) {
+    const highlightObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.6,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    highlightLines.forEach(el => highlightObserver.observe(el));
+  }
+
+  // 3. Image Carousels Handler (Supports multiple carousels)
   const activeCarousels = [];
 
   function initCarousel(container) {
@@ -194,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (instance) activeCarousels.push(instance);
   });
 
-  // 5. Image Lightbox Feature
+  // 4. Image Lightbox Feature
   initLightbox();
 
   function initLightbox() {

@@ -1,71 +1,79 @@
 /* ==========================================================================
    Jayden Samuel Kurniawan - Portfolio Styles
-   Dark-mode default, modern tech aesthetic, responsive CSS Grid/Flexbox
+   Dark-only identity. Archivo Expanded display + Instrument Sans text.
+   Palette: two neutrals + one accent. Contrast verified against WCAG AA.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+/* Fonts: Archivo carries a width axis, so `font-stretch: expanded` gives the
+   display face; Instrument Sans is narrower than Inter so long research
+   bullets set tighter without shrinking. No mono face by design. */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..700&display=swap');
 
 :root {
-  /* Dark Theme Variables (Default) */
-  --bg-primary: #0b0f19;
-  --bg-secondary: #111827;
-  --bg-card: rgba(17, 24, 39, 0.7);
-  --bg-card-hover: rgba(31, 41, 55, 0.8);
-  --bg-nav: rgba(11, 15, 25, 0.85);
+  /* ---- Core palette (dark-only; no theme variants) ----
+     paper on ink      15.90:1  AA normal
+     muted on ink       8.03:1  AA normal
+     muted on carbon    7.33:1  AA normal
+     signal on ink      5.21:1  AA normal  <- accent usable as text, not just decor
+     ink on signal      5.21:1  AA normal  (dark label on a signal fill)
+     white on signal-deep 5.61:1 AA normal (light label on a signal fill)   */
+  --ink: #14161a;
+  --carbon: #1c1f24;
+  --carbon-raised: #23272e;
+  --paper: #f2f0eb;
+  --muted: #a8adb5;
+  --signal: #ff4128;
+  --signal-deep: #c62a17;
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  /* Legacy aliases: existing components keep working while later phases
+     rewrite them section by section. Every one resolves to a flat value,
+     so no gradient, glass or glow survives. */
+  --bg-primary: var(--ink);
+  --bg-secondary: var(--carbon);
+  --bg-card: var(--carbon);
+  --bg-card-hover: var(--carbon-raised);
+  --bg-nav: var(--ink);
 
-  --accent-cyan: #38bdf8;
-  --accent-indigo: #6366f1;
-  --accent-purple: #a855f7;
-  --accent-emerald: #10b981;
-  
-  --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
-  --gradient-glow: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.15));
-  --gradient-border: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(168, 85, 247, 0.2));
+  --text-primary: var(--paper);
+  --text-secondary: var(--muted);
+  --text-muted: var(--muted);
 
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-color-hover: rgba(56, 189, 248, 0.3);
+  --accent-cyan: var(--signal);
+  --accent-indigo: var(--signal);
+  --accent-purple: var(--signal);
 
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.2);
+  --border-color: rgba(242, 240, 235, 0.12);
+  --border-color-hover: var(--signal);
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-glow: none;
 
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Radius is a hierarchy tool, not a default. Near-square geometry. */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-full: 4px;
 
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'Fira Code', monospace;
-}
+  --transition-fast: 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-normal: 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-slow: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 
-/* Light Theme Variables */
-[data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --bg-card-hover: rgba(255, 255, 255, 1);
-  --bg-nav: rgba(248, 250, 252, 0.85);
+  --font-display: 'Archivo', 'Arial Black', sans-serif;
+  --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-sans);
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
+  /* Fluid type scale. Extremes far apart, middle deliberately thin. */
+  --step-statement: clamp(2.75rem, 9vw, 7rem);
+  --step-marker: clamp(1.75rem, 4vw, 3rem);
+  --step-title: clamp(1.125rem, 1.6vw, 1.3rem);
+  --step-body: clamp(0.975rem, 1.05vw, 1.0625rem);
+  --step-meta: 0.8125rem;
 
-  --border-color: rgba(15, 23, 42, 0.08);
-  --border-color-hover: rgba(99, 102, 241, 0.4);
-
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.08);
-  --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.15);
+  /* Section rhythm: mobile register first, desktop opens up. */
+  --space-section: clamp(3rem, 8vw, 7rem);
+  --space-gutter: clamp(1.25rem, 4vw, 2.5rem);
 }
 
 /* Reset & Base Styles */
@@ -82,46 +90,38 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
+  font-size: var(--step-body);
+  background-color: var(--ink);
+  color: var(--paper);
+  line-height: 1.65;
   position: relative;
-}
-
-/* Background Ambient Glow */
-body::before {
-  content: '';
-  position: fixed;
-  top: -10vw;
-  left: -10vw;
-  width: 50vw;
-  height: 50vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.07) 0%, rgba(0, 0, 0, 0) 70%);
-  pointer-events: none;
-  z-index: -1;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  bottom: -10vw;
-  right: -10vw;
-  width: 50vw;
-  height: 50vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.07) 0%, rgba(0, 0, 0, 0) 70%);
-  pointer-events: none;
-  z-index: -1;
+  /* No overflow-x:hidden: masking overflow hides the failure instead of
+     fixing it. Real overflow must surface during responsive QA. */
 }
 
 /* Typography Utilities */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  line-height: 1.25;
-  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-stretch: expanded;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--paper);
+}
+
+/* Structural labels: weight carries the hierarchy, not letter-spacing. */
+.display-marker {
+  font-family: var(--font-display);
+  font-stretch: expanded;
+  font-weight: 900;
+  font-size: var(--step-marker);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+/* Years, sensor model numbers and counts align in columns. */
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
 a {
@@ -133,22 +133,32 @@ ul {
   list-style: none;
 }
 
+/* Accent text, replacing the former gradient fill. 5.21:1 on --ink. */
 .gradient-text {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--signal);
+}
+
+/* ---- Focus: visible on every interactive element, >=3:1 on --ink ---- */
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Only suppress the default ring where a :focus-visible rule replaces it. */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 var(--space-gutter);
 }
 
 .section {
-  padding: 6rem 0;
+  padding: var(--space-section) 0;
   position: relative;
 }
 
@@ -188,9 +198,7 @@ ul {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: var(--bg-nav);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--ink);
   border-bottom: 1px solid var(--border-color);
   transition: var(--transition-normal);
 }
@@ -245,9 +253,8 @@ ul {
   left: 0;
   width: 0%;
   height: 2px;
-  background: var(--gradient-primary);
+  background: var(--signal);
   transition: width var(--transition-fast);
-  border-radius: 2px;
 }
 
 .nav-link:hover::after, .nav-link.active::after {
@@ -260,26 +267,6 @@ ul {
   gap: 1rem;
 }
 
-.theme-toggle-btn {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-
-.theme-toggle-btn:hover {
-  border-color: var(--border-color-hover);
-  background: var(--bg-card-hover);
-  transform: scale(1.05);
-}
-
 .mobile-toggle {
   display: none;
   background: none;
@@ -289,110 +276,124 @@ ul {
   cursor: pointer;
 }
 
-/* Glassmorphism Card Style */
+/* Surface card: solid, flat, no blur and no elevation by default.
+   Glass and glow were page-wide defaults; both are gone. */
 .glass-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--carbon);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: 2rem;
-  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  transition: border-color var(--transition-normal);
 }
 
 .glass-card:hover {
   border-color: var(--border-color-hover);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-4px);
 }
 
-/* Hero / About Section */
-.hero-section {
-  padding-top: 8.5rem;
-  padding-bottom: 5rem;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 3.5rem;
-  align-items: center;
-}
-
-.hero-image-wrapper {
+/* ==========================================================================
+   Hero
+   Editorial composition: the name is the loudest element on the page, the
+   portrait is cut out and grounded on the page rather than boxed in a card.
+   ========================================================================== */
+.hero {
   position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  padding-top: clamp(6.5rem, 12vw, 9.5rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+  overflow: hidden; /* the portrait is allowed to bleed past its column */
 }
 
-.hero-image-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-lg);
-  padding: 2px;
-  background: var(--gradient-primary);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(240px, 26vw, 340px);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: end;
 }
 
-.hero-image {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1.15;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
+/* ---- Name: three lines, display scale, tight leading ---- */
+.hero-name {
+  margin: 0 0 clamp(1.25rem, 3vw, 2rem);
+  font-family: var(--font-display);
+  font-stretch: expanded;
+  font-weight: 900;
+  font-size: var(--step-statement);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.hero-name-line {
   display: block;
-  transition: transform var(--transition-slow);
 }
 
-.hero-image-wrapper:hover .hero-image {
-  transform: scale(1.03);
+/* The single accent word. 5.21:1 on --ink. */
+.hero-name-accent {
+  color: var(--signal);
 }
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  border-radius: var(--radius-full);
-  color: var(--accent-cyan);
-  font-size: 0.875rem;
+/* ---- Statement line carrying the highlight reveal ---- */
+.hero-statement {
+  margin: 0 0 clamp(1rem, 2.5vw, 1.5rem);
+  font-family: var(--font-display);
+  font-stretch: semi-expanded;
   font-weight: 600;
-  margin-bottom: 1.25rem;
-}
-
-.hero-badge .pulse-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-cyan);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--accent-cyan);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(0.95); opacity: 0.8; }
-}
-
-.hero-title {
-  font-size: 2.75rem;
-  letter-spacing: -1px;
-  margin-bottom: 1rem;
+  font-size: clamp(1.0625rem, 1.9vw, 1.5rem);
+  line-height: 1.25;
+  max-width: 34ch;
 }
 
 .hero-bio {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
+  max-width: 52ch;
+  margin: 0 0 clamp(1.5rem, 3vw, 2rem);
+  color: var(--muted);
+  font-size: var(--step-body);
   line-height: 1.7;
+}
+
+/* ---- Portrait: cut out, bottom-aligned, no card ---- */
+/* The portrait's rendered width is its height x its aspect ratio (302/929).
+   Expressing that once lets the caption rule match the image exactly instead
+   of running out into empty space beside it. */
+.hero-portrait {
+  --portrait-h: min(58vh, 620px);
+  --portrait-w: calc(var(--portrait-h) * 0.3251);
+  position: relative;
+  margin: 0 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: var(--portrait-w);
+}
+
+/* Size from the HEIGHT so the figure is scaled by the composition, not by
+   the column width. width:auto keeps the aspect ratio with no letterboxing,
+   and the cap stops the portrait driving the hero taller than the viewport.
+   Never upscales past the asset's own 302px. */
+.hero-portrait-img {
+  display: block;
+  height: var(--portrait-h);
+  width: auto;
+  max-width: 100%;
+}
+
+.hero-portrait-caption {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--muted);
+  font-size: var(--step-meta);
+  line-height: 1.35;
+}
+
+.hero-caption-rule {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 2px;
+  background: var(--signal);
 }
 
 /* Buttons */
@@ -415,15 +416,16 @@ ul {
   border: none;
 }
 
+/* Solid fill so contrast is one number, not a ramp across a gradient.
+   #ffffff on --signal-deep = 5.61:1 (AA normal). */
 .btn-primary {
-  background: var(--gradient-primary);
+  background: var(--signal-deep);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+  background: var(--signal);
+  color: var(--ink);
 }
 
 .btn-secondary {
@@ -435,73 +437,135 @@ ul {
 .btn-secondary:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-color-hover);
-  transform: translateY(-2px);
 }
 
-/* Specializations Section */
-.spec-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+/* ==========================================================================
+   Specializations
+   Three numbered rows, weighted rather than repeated: row 01 leads (largest
+   title, widest measure), 02 sits mid, 03 reads as supporting. No cards, no
+   icon tiles. The index numeral does the structural work.
+   ========================================================================== */
+.spec-header {
+  max-width: 46ch;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 
-.spec-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.spec-heading {
+  margin: 0 0 0.75rem;
 }
 
-.spec-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-md);
-  background: var(--gradient-glow);
-  border: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--accent-cyan);
-  margin-bottom: 1.25rem;
-}
-
-.spec-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-}
-
-.spec-card p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
+.spec-intro {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--step-body);
   line-height: 1.6;
 }
 
-/* Toolkit Banner */
-.toolkit-banner {
-  margin-top: 2.5rem;
-  background: var(--gradient-glow);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
+.spec-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* One shared rule at the top; each row adds its own bottom edge, so the
+     set reads as a table of entries rather than three floating boxes. */
+  border-top: 1px solid var(--border-color);
+}
+
+.spec-row {
+  display: grid;
+  /* Fixed numeral column: an auto column sizes to each numeral, which
+     staircases the titles leftward as the numbers shrink. */
+  grid-template-columns: clamp(3rem, 8vw, 7.25rem) minmax(0, 1fr);
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  align-items: baseline;
+  padding: clamp(1.5rem, 3.5vw, 2.75rem) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* The numeral: display face, outlined so it marks position without
+   competing with the title for the accent. */
+.spec-index {
+  font-family: var(--font-display);
+  font-stretch: expanded;
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  line-height: 0.9;
+  color: var(--signal);
+}
+
+.spec-title {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.spec-text {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: var(--step-body);
+  line-height: 1.65;
+}
+
+/* ---- Hierarchy: the three rows are deliberately unequal ---- */
+
+/* 01 leads: biggest numeral and title, and the body copy steps up to
+   paper-weight so the eye lands here first. */
+.spec-row--lead {
+  padding-top: clamp(1.75rem, 4vw, 3.25rem);
+}
+
+.spec-row--lead .spec-index {
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+}
+
+.spec-row--lead .spec-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+}
+
+.spec-row--lead .spec-text {
+  max-width: 54ch;
+  color: var(--paper);
+  font-size: clamp(1rem, 1.5vw, 1.1875rem);
+}
+
+/* 03 recedes: smaller title, narrower measure, indented past the numeral
+   column on wide screens. */
+/* 03 keeps normal bottom padding: zeroing it put the text against the rule. */
+.spec-row--minor .spec-title {
+  margin-bottom: 0.45rem;
+}
+
+.spec-row--minor .spec-index {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  color: var(--muted);
+}
+
+.spec-row--minor .spec-title {
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+}
+
+.spec-row--minor .spec-text {
+  max-width: 48ch;
+}
+
+/* Closing note, replacing the former toolkit banner. Plain line, one rule. */
+.spec-note {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: clamp(1.75rem, 4vw, 2.75rem) 0 0;
+  color: var(--muted);
+  font-size: var(--step-meta);
+  line-height: 1.5;
 }
 
-.toolkit-icon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
-}
-
-.toolkit-content h4 {
-  font-size: 1.1rem;
-  margin-bottom: 0.35rem;
-}
-
-.toolkit-content p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
+.spec-note-rule {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 2px;
+  margin-top: 0.45em;
+  background: var(--signal);
 }
 
 /* Experience Section */
@@ -534,9 +598,7 @@ ul {
   transition: transform var(--transition-slow);
 }
 
-.exp-card:hover .exp-img {
-  transform: scale(1.05);
-}
+
 
 .exp-content h3 {
   font-size: 1.35rem;
@@ -555,7 +617,7 @@ ul {
   font-size: 0.8125rem;
   color: var(--text-muted);
   margin-bottom: 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--carbon-raised);
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-sm);
 }
@@ -619,10 +681,8 @@ ul {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(11, 15, 25, 0.75);
+  background: var(--ink);
   border: 1px solid var(--border-color);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
   z-index: 10;
@@ -647,8 +707,7 @@ ul {
 }
 
 .carousel-btn:hover {
-  transform: scale(1.25);
-  color: var(--accent-cyan);
+  color: var(--signal);
 }
 
 .carousel-dots {
@@ -661,16 +720,15 @@ ul {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(242, 240, 235, 0.4);
   cursor: pointer;
   transition: var(--transition-fast);
 }
 
 .carousel-dots .dot.active {
-  background: var(--accent-cyan);
+  background: var(--signal);
   width: 16px;
-  border-radius: 4px;
-  box-shadow: 0 0 8px var(--accent-cyan);
+  border-radius: 2px;
 }
 
 /* Certifications & Research Section */
@@ -686,12 +744,12 @@ ul {
   align-items: center;
   gap: 0.4rem;
   padding: 0.3rem 0.8rem;
-  background: rgba(168, 85, 247, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  color: var(--accent-purple);
+  background: var(--carbon-raised);
+  border: 1px solid var(--border-color);
+  color: var(--signal);
   font-weight: 600;
-  font-size: 0.8125rem;
-  border-radius: var(--radius-full);
+  font-size: var(--step-meta);
+  border-radius: var(--radius-sm);
   margin-bottom: 0.75rem;
 }
 
@@ -764,7 +822,7 @@ ul {
 .tech-tag {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--carbon-raised);
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
   padding: 0.25rem 0.65rem;
@@ -835,10 +893,8 @@ ul {
 
 .social-btn:hover {
   background: var(--bg-card-hover);
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-glow);
+  border-color: var(--signal);
+  color: var(--signal);
 }
 
 /* Footer */
@@ -851,15 +907,68 @@ footer {
 }
 
 /* Scroll Reveal Animations */
+/* No-JS fallback: content is visible by default. Only once the script has
+   set .js-enabled on <html> do reveals start hidden, so a script failure
+   can never leave the page blank. */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js-enabled .reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(24px);
   transition: opacity var(--transition-slow), transform var(--transition-slow);
 }
 
-.reveal.active {
+.js-enabled .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ---- Scroll-driven text highlight ----
+   Three layers, matching the mechanism inspected on the reference site:
+   the text is clipped to zero width, a solid signal bar sits ON TOP of it,
+   and on reveal the clip opens left-to-right before the bar scales away
+   from its right edge. The highlight therefore arrives before the words. */
+.reveal-line {
+  position: relative;
+  display: inline-block;
+}
+
+/* Default (no JS): text fully visible, bar collapsed and invisible. */
+.reveal-text {
+  display: inline-block;
+  clip-path: inset(0);
+}
+
+.reveal-bar {
+  position: absolute;
+  inset: 0;
+  background: var(--signal);
+  transform-origin: right center;
+  transform: scaleX(0);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* With JS: start clipped and covered, then play on .is-revealed. */
+.js-enabled .reveal-text {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-enabled .reveal-bar {
+  transform: scaleX(1);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.45s;
+}
+
+.js-enabled .reveal-line.is-revealed .reveal-text {
+  clip-path: inset(0);
+}
+
+.js-enabled .reveal-line.is-revealed .reveal-bar {
+  transform: scaleX(0);
 }
 
 /* Image Lightbox Component */
@@ -883,8 +992,6 @@ footer {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -904,10 +1011,8 @@ footer {
 
 .lightbox-expand-btn:hover {
   background: var(--bg-card-hover);
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  transform: scale(1.1) !important;
-  box-shadow: var(--shadow-glow);
+  border-color: var(--signal);
+  color: var(--signal);
 }
 
 /* Lightbox Modal & Backdrop */
@@ -934,13 +1039,7 @@ footer {
 .lightbox-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(11, 15, 25, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-[data-theme="light"] .lightbox-backdrop {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(20, 22, 26, 0.94);
 }
 
 .lightbox-container {
@@ -975,9 +1074,8 @@ footer {
 
 .lightbox-close-btn:hover {
   background: var(--bg-card-hover);
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  transform: scale(1.1);
+  border-color: var(--signal);
+  color: var(--signal);
 }
 
 .lightbox-content {
@@ -994,7 +1092,6 @@ footer {
   max-height: 80vh;
   object-fit: contain;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg), 0 0 35px rgba(56, 189, 248, 0.15);
   border: 1px solid var(--border-color);
   transform: scale(0.92);
   transition: transform var(--transition-normal);
@@ -1025,19 +1122,11 @@ footer {
 
 /* Responsive Media Queries */
 @media (max-width: 992px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2.5rem;
-  }
-
-  .hero-image-wrapper {
-    max-width: 280px;
-    margin: 0 auto;
-  }
-
-  .btn-group {
-    justify-content: center;
+  /* Tablet: keep the two-column composition but let the text lead and the
+     portrait sit narrower beside it. */
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr) clamp(190px, 30vw, 260px);
+    gap: clamp(1.25rem, 3vw, 2rem);
   }
 
   .exp-card, .cert-card {
@@ -1060,9 +1149,7 @@ footer {
     top: 4.5rem;
     left: 0;
     width: 100%;
-    background: var(--bg-nav);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: var(--ink);
     flex-direction: column;
     padding: 2rem;
     gap: 1.5rem;
@@ -1075,8 +1162,42 @@ footer {
     clip-path: circle(140% at 100% 0);
   }
 
-  .hero-title {
-    font-size: 2.1rem;
+  /* Phone: single column. Portrait first so the name is not pushed below
+     the fold, capped in height so it never dominates the screen. */
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .hero-portrait {
+    order: -1;
+    align-items: flex-start;
+  }
+
+  /* Phone: size the portrait by WIDTH, not height. The asset is 302x929, so
+     height-driven sizing rendered it ~88px wide. A fixed width with a capped
+     height crops to the upper body instead, which keeps the figure legible
+     without pushing the name down the fold. Caption spans the text column. */
+  .hero-portrait {
+    width: 100%;
+    margin-left: 0;
+    align-items: flex-start;
+  }
+
+  .hero-portrait-img {
+    width: min(200px, 302px);
+    height: 250px;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .hero-portrait-caption {
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+  }
+
+  .hero-statement {
+    max-width: none;
   }
 
   .section-title {
@@ -1106,8 +1227,37 @@ footer {
     right: 50%;
     transform: translateX(50%);
   }
+}
 
-  .lightbox-close-btn:hover {
-    transform: translateX(50%) scale(1.1);
+/* ==========================================================================
+   Reduced motion: one global switch. Covers reveals, the highlight bar,
+   carousel slide transitions and every hover transition.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Content must be readable, not mid-animation. */
+  .js-enabled .reveal,
+  .js-enabled .reveal.active {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js-enabled .reveal-text,
+  .js-enabled .reveal-line.is-revealed .reveal-text {
+    clip-path: inset(0);
+  }
+
+  .js-enabled .reveal-bar {
+    display: none;
   }
 }
