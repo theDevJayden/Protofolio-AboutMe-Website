@@ -333,28 +333,39 @@
     <!-- Featured Projects Section -->
     <section id="projects" class="section">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Engineering Showcase</span>
-          <h2 class="section-title">Featured Projects</h2>
-          <p class="section-subtitle">Real-world implementations built and deployed.</p>
-        </div>
+        <header class="prj-header reveal">
+          <h2 class="prj-heading display-marker">
+            <span class="reveal-line" aria-label="Featured Projects">
+              <span class="reveal-text" aria-hidden="true">Featured Projects</span>
+              <span class="reveal-bar" aria-hidden="true"></span>
+            </span>
+          </h2>
+          <p class="prj-intro">Real-world implementations built and deployed.</p>
+        </header>
 
-        <div class="projects-grid">
-          <!-- Project 1 -->
-          <div class="glass-card project-card reveal">
-            <div>
-              <div class="project-header">
-                <div class="project-meta">
-                  <span class="project-category">Machine Learning</span>
-                  <span class="project-timeline">2026</span>
-                </div>
-                <h3 class="project-title">PneuScan AI Portal</h3>
-                <div class="project-subtitle">Intelligent Pneumonia Diagnostic System</div>
-              </div>
-              <p class="project-description">
+        <!-- Flagship: PneuScan. Full width, largest type, deployed demo. -->
+        <article class="prj-flagship reveal">
+          <p class="prj-eyebrow">
+            <span class="prj-flag">Flagship</span>
+            <span class="prj-cat">Machine Learning</span>
+            <span class="prj-year tabular">2026</span>
+          </p>
+
+          <div class="prj-flagship-grid">
+            <div class="prj-flagship-lead">
+              <h3 class="prj-flagship-title">PneuScan AI Portal</h3>
+              <p class="prj-flagship-sub">Intelligent Pneumonia Diagnostic System</p>
+              <p class="prj-flagship-desc">
                 Developed an advanced medical imaging pipeline designed to automate the screening and deeper categorical analysis of pneumonia from digital chest X-rays.
               </p>
-              <ul class="exp-bullets" style="margin-bottom: 1.25rem;">
+              <div class="prj-links">
+                <a href="https://ai-pneumonia-detector-thedevjayden.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Open live demo</a>
+                <a href="https://github.com/theDevJayden/AI-pneumonia-detector" target="_blank" rel="noopener noreferrer" class="link-btn">GitHub repo</a>
+              </div>
+            </div>
+
+            <div class="prj-flagship-detail">
+              <ul class="exp-bullets">
                 <li><strong>Supervised Feature Extraction:</strong> Fine-tuned MobileNetV2 CNN framework for high-accuracy binary classification (Normal vs. Pneumonia).</li>
                 <li><strong>Unsupervised Subtype Segmentation:</strong> K-Means Clustering on deep features to group latent structural variations within positive cases.</li>
                 <li><strong>Edge Deployment Ready:</strong> Lightweight architecture optimized for clinical edge devices and cloud web portals.</li>
@@ -368,89 +379,67 @@
                 <span class="tech-tag">Streamlit</span>
               </div>
             </div>
-
-            <div class="project-links">
-              <a href="https://ai-pneumonia-detector-thedevjayden.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">
-                <i class="fas fa-external-link-alt"></i> Live Demo
-              </a>
-              <a href="https://github.com/theDevJayden/AI-pneumonia-detector" target="_blank" rel="noopener noreferrer" class="link-btn">
-                <i class="fab fa-github"></i> GitHub Repo
-              </a>
-            </div>
           </div>
+        </article>
 
-          <!-- Project 2 -->
-          <div class="glass-card project-card reveal">
-            <div>
-              <div class="project-header">
-                <div class="project-meta">
-                  <span class="project-category">IoT and Embedded System</span>
-                  <span class="project-timeline">2026</span>
-                </div>
-                <h3 class="project-title">Live Air Quality AI Dashboard</h3>
-                <div class="project-subtitle">Real-time Environmental Intelligence & AQI Monitoring</div>
-              </div>
-              <p class="project-description">
-                Developed an end-to-end environmental monitoring system designed to provide high-granularity Air Quality Index (AQI) data through a robust edge-to-cloud pipeline.
-              </p>
-              <ul class="exp-bullets" style="margin-bottom: 1.25rem;">
-                <li><strong>Hybrid Hardware Integration:</strong> Dual-microcontroller system (Arduino Mega + ESP32 wireless gateway).</li>
-                <li><strong>Multi-Modal Sensing:</strong> MQ gas sensors & PM2.5 optical sensors tracking CO2, smoke, and fine particulate pollutants.</li>
-                <li><strong>Anomaly Detection:</strong> Isolation Forest ML model flagging environmental irregularities and sensor drift.</li>
-              </ul>
-              <div class="tech-stack">
-                <span class="tech-tag">Arduino Mega</span>
-                <span class="tech-tag">ESP32</span>
-                <span class="tech-tag">ThingSpeak API</span>
-                <span class="tech-tag">Isolation Forest</span>
-                <span class="tech-tag">Scikit-Learn</span>
-                <span class="tech-tag">Streamlit</span>
-                <span class="tech-tag">MQ Sensors</span>
-                <span class="tech-tag">PM2.5 Sensor</span>
-              </div>
-            </div>
+        <!-- Supporting projects: narrower pair, smaller type, no flag. -->
+        <h3 class="prj-support-label reveal">Also built</h3>
 
-            <div class="project-links">
-              <a href="https://kualitas-udara-dashboard-eudtahka6ajlqffz3t5adm.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">
-                <i class="fas fa-external-link-alt"></i> Live Demo
-              </a>
-              <a href="https://github.com/theDevJayden/kualitas-udara-dashboard" target="_blank" rel="noopener noreferrer" class="link-btn">
-                <i class="fab fa-github"></i> GitHub Repo
-              </a>
+        <div class="prj-support">
+          <article class="prj-item reveal">
+            <p class="prj-eyebrow">
+              <span class="prj-cat">IoT and Embedded System</span>
+              <span class="prj-year tabular">2026</span>
+            </p>
+            <h4 class="prj-title">Live Air Quality AI Dashboard</h4>
+            <p class="prj-sub">Real-time Environmental Intelligence &amp; AQI Monitoring</p>
+            <p class="prj-desc">
+              Developed an end-to-end environmental monitoring system designed to provide high-granularity Air Quality Index (AQI) data through a robust edge-to-cloud pipeline.
+            </p>
+            <ul class="exp-bullets">
+              <li><strong>Hybrid Hardware Integration:</strong> Dual-microcontroller system (Arduino Mega + ESP32 wireless gateway).</li>
+              <li><strong>Multi-Modal Sensing:</strong> MQ gas sensors &amp; PM2.5 optical sensors tracking CO2, smoke, and fine particulate pollutants.</li>
+              <li><strong>Anomaly Detection:</strong> Isolation Forest ML model flagging environmental irregularities and sensor drift.</li>
+            </ul>
+            <div class="tech-stack">
+              <span class="tech-tag">Arduino Mega</span>
+              <span class="tech-tag">ESP32</span>
+              <span class="tech-tag">ThingSpeak API</span>
+              <span class="tech-tag">Isolation Forest</span>
+              <span class="tech-tag">Scikit-Learn</span>
+              <span class="tech-tag">Streamlit</span>
+              <span class="tech-tag">MQ Sensors</span>
+              <span class="tech-tag">PM2.5 Sensor</span>
             </div>
-          </div>
+            <div class="prj-links">
+              <a href="https://kualitas-udara-dashboard-eudtahka6ajlqffz3t5adm.streamlit.app/" target="_blank" rel="noopener noreferrer" class="link-btn link-btn--accent">Open live demo</a>
+              <a href="https://github.com/theDevJayden/kualitas-udara-dashboard" target="_blank" rel="noopener noreferrer" class="link-btn">GitHub repo</a>
+            </div>
+          </article>
 
-          <!-- Project 3 -->
-          <div class="glass-card project-card reveal">
-            <div>
-              <div class="project-header">
-                <div class="project-meta">
-                  <span class="project-category">Web Development</span>
-                  <span class="project-timeline">2025</span>
-                </div>
-                <h3 class="project-title">Fictional Fashion Brand Website</h3>
-                <div class="project-subtitle">E-commerce Platform for Virtual Fashion Retail</div>
-              </div>
-              <p class="project-description">
-                Developed an end-to-end e-commerce platform for a fictional fashion brand.
-              </p>
-              <ul class="exp-bullets" style="margin-bottom: 1.25rem;">
-                <li><strong>Responsive Design:</strong> Ensured the website is fully responsive across most device sizes. Ensures every button is accessible and functional.</li>
-                <li><strong>Field Validation:</strong> Implemented robust form validation to ensure every input is correctly formatted according to company policy and within acceptable ranges</li>
-              </ul>
-              <div class="tech-stack">
-                <span class="tech-tag">HTML</span>
-                <span class="tech-tag">CSS</span>
-                <span class="tech-tag">JavaScript</span>
-              </div>
+          <article class="prj-item reveal">
+            <p class="prj-eyebrow">
+              <span class="prj-cat">Web Development</span>
+              <span class="prj-year tabular">2025</span>
+            </p>
+            <h4 class="prj-title">Fictional Fashion Brand Website</h4>
+            <p class="prj-sub">E-commerce Platform for Virtual Fashion Retail</p>
+            <p class="prj-desc">
+              Developed an end-to-end e-commerce platform for a fictional fashion brand.
+            </p>
+            <ul class="exp-bullets">
+              <li><strong>Responsive Design:</strong> Ensured the website is fully responsive across most device sizes. Ensures every button is accessible and functional.</li>
+              <li><strong>Field Validation:</strong> Implemented robust form validation to ensure every input is correctly formatted according to company policy and within acceptable ranges</li>
+            </ul>
+            <div class="tech-stack">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
             </div>
-
-            <div class="project-links">
-              <a href="https://github.com/theDevJayden/Fashion-Website" target="_blank" rel="noopener noreferrer" class="link-btn">
-                <i class="fab fa-github"></i> GitHub Repo
-              </a>
+            <div class="prj-links">
+              <a href="https://github.com/theDevJayden/Fashion-Website" target="_blank" rel="noopener noreferrer" class="link-btn">GitHub repo</a>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -458,26 +447,40 @@
     <!-- Socials & Contact Section -->
     <section id="socials" class="section">
       <div class="container">
-        <div class="glass-card contact-card reveal">
-          <h2>Let's Build Together</h2>
-          <p>Whether you have a project idea, research collaboration, or engineering opportunity, feel free to connect with me.</p>
-          
-          <div class="social-links">
-            <a href="https://www.linkedin.com/in/jayden-samuel-kurniawan-a525b3323?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="social-btn">
-              <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/theDevJayden" target="_blank" rel="noopener noreferrer" class="social-btn">
-              <i class="fab fa-github"></i> GitHub
-            </a>
+        <div class="contact-strip reveal">
+          <div class="contact-lead">
+            <h2 class="contact-heading display-marker">
+              <span class="reveal-line" aria-label="Get in touch">
+                <span class="reveal-text" aria-hidden="true">Get in touch</span>
+                <span class="reveal-bar" aria-hidden="true"></span>
+              </span>
+            </h2>
+            <p class="contact-note">Whether you have a project idea, research collaboration, or engineering opportunity, feel free to connect with me.</p>
           </div>
+
+          <ul class="contact-channels">
+            <li class="contact-channel">
+              <span class="contact-channel-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/jayden-samuel-kurniawan-a525b3323?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="contact-link">
+                Jayden Samuel Kurniawan
+              </a>
+            </li>
+            <li class="contact-channel">
+              <span class="contact-channel-label">GitHub</span>
+              <a href="https://github.com/theDevJayden" target="_blank" rel="noopener noreferrer" class="contact-link">
+                theDevJayden
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Jayden Samuel Kurniawan. Crafted with vanilla HTML, CSS, & JS.</p>
+  <footer class="site-footer">
+    <div class="container site-footer-inner">
+      <p class="site-footer-name">Jayden Samuel Kurniawan</p>
+      <p class="site-footer-meta tabular">&copy; 2026 &middot; Built with HTML, CSS, and JavaScript</p>
     </div>
   </footer>
 
