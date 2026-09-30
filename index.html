@@ -128,176 +128,205 @@
     <!-- Experience Section -->
     <section id="experience" class="section">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Career Journey</span>
-          <h2 class="section-title">Experience</h2>
-          <p class="section-subtitle">Work, campus leadership, and community engagements.</p>
-        </div>
+        <header class="exp-header reveal">
+          <h2 class="exp-heading display-marker">
+            <span class="reveal-line" aria-label="Experience">
+              <span class="reveal-text" aria-hidden="true">Experience</span>
+              <span class="reveal-bar" aria-hidden="true"></span>
+            </span>
+          </h2>
+          <p class="exp-intro">Work, campus leadership, and community engagements.</p>
+        </header>
 
-        <div class="experience-grid">
+        <ol class="exp-timeline-list">
           <!-- Work Experience -->
-          <div class="glass-card exp-card reveal">
-            <div class="exp-media">
-              <img src="assets/viodi.jpeg" alt="Viodi Cosmetics Internship" class="exp-img">
+          <li class="tl-item reveal">
+            <div class="tl-meta">
+              <span class="tl-year tabular">2024 - 2025</span>
+              <span class="tl-duration tabular">4 Months</span>
             </div>
-            <div class="exp-content">
-              <h3>Accounting Assistant (Internship)</h3>
-              <div class="exp-company">Viodi Cosmetics</div>
-              <span class="exp-timeline"><i class="far fa-calendar-alt"></i> 2024 - 2025 • 4 Months</span>
-              <p style="color: var(--text-secondary);">Managed financial transactions and compliance operations for corporate accounts.</p>
+            <div class="tl-content">
+              <h3 class="tl-role">Accounting Assistant (Internship)</h3>
+              <p class="tl-org">Viodi Cosmetics</p>
+              <p class="tl-summary">Managed financial transactions and compliance operations for corporate accounts.</p>
               <ul class="exp-bullets">
                 <li><strong>Financial Documentation:</strong> Streamlined corporate transactional records by accurately creating and organizing invoices.</li>
                 <li><strong>Taxation Compliance:</strong> Supported the finance team in calculating and verifying monthly company taxation data.</li>
               </ul>
-            </div>
-          </div>
-
-          <!-- Campus Experience with Interactive Carousel -->
-          <div class="glass-card exp-card reveal">
-            <div class="exp-media">
-              <div class="carousel-container">
-                <div class="carousel-slide active">
-                  <img src="assets/FL.jpg" alt="Freshmen Leader Activity 1" class="exp-img">
-                </div>
-                <div class="carousel-slide">
-                  <img src="assets/FL2.jpg" alt="Freshmen Leader Activity 2" class="exp-img">
-                </div>
-                <div class="carousel-slide">
-                  <img src="assets/FL3.jpg" alt="Freshmen Leader Activity 3" class="exp-img">
-                </div>
-                
-                <div class="carousel-nav">
-                  <button class="carousel-btn" id="carousel-prev" data-carousel-prev aria-label="Previous Photo"><i class="fas fa-chevron-left"></i></button>
-                  <div class="carousel-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                  </div>
-                  <button class="carousel-btn" id="carousel-next" data-carousel-next aria-label="Next Photo"><i class="fas fa-chevron-right"></i></button>
-                </div>
+              <div class="exp-media tl-media">
+                <img src="assets/viodi.jpeg" alt="Viodi Cosmetics Internship" class="exp-img">
               </div>
             </div>
-            <div class="exp-content">
-              <h3>Freshmen Leader</h3>
-              <div class="exp-company">Bina Nusantara University</div>
-              <span class="exp-timeline"><i class="far fa-calendar-alt"></i> 2025 • 1 Month</span>
-              <p style="color: var(--text-secondary);">Guide and lead new students during their orientation program.</p>
+          </li>
+
+          <!-- Campus Experience with Interactive Carousel -->
+          <li class="tl-item reveal">
+            <div class="tl-meta">
+              <span class="tl-year tabular">2025</span>
+              <span class="tl-duration tabular">1 Month</span>
+            </div>
+            <div class="tl-content">
+              <h3 class="tl-role">Freshmen Leader</h3>
+              <p class="tl-org">Bina Nusantara University</p>
+              <p class="tl-summary">Guide and lead new students during their orientation program.</p>
               <ul class="exp-bullets">
                 <li>Teach new students about Bina Nusantara rules, guidelines, and policy.</li>
                 <li>Consult and guide new students personally, learning their troubles and adaptation problems, while finding a solution.</li>
               </ul>
+              <div class="exp-media tl-media">
+                <div class="carousel-container">
+                  <div class="carousel-slide active">
+                    <img src="assets/FL.jpg" alt="Freshmen Leader Activity 1" class="exp-img">
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="assets/FL2.jpg" alt="Freshmen Leader Activity 2" class="exp-img">
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="assets/FL3.jpg" alt="Freshmen Leader Activity 3" class="exp-img">
+                  </div>
+
+                  <div class="carousel-nav">
+                    <button class="carousel-btn" id="carousel-prev" data-carousel-prev aria-label="Previous Photo"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-dots">
+                      <span class="dot active"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
+                    <button class="carousel-btn" id="carousel-next" data-carousel-next aria-label="Next Photo"><i class="fas fa-chevron-right"></i></button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </li>
 
           <!-- Organizational Experience -->
-          <div class="glass-card exp-card reveal">
-            <div class="exp-media">
-              <img src="assets/JK.jpeg" alt="Joel Kids Ministry" class="exp-img">
+          <li class="tl-item reveal">
+            <div class="tl-meta">
+              <span class="tl-year tabular">2025 - Present</span>
             </div>
-            <div class="exp-content">
-              <h3>Toddler Ministry Co-Leader</h3>
-              <div class="exp-company">Joel Kids Ministry</div>
-              <span class="exp-timeline"><i class="far fa-calendar-alt"></i> 2025 - Present</span>
-              <p style="color: var(--text-secondary);">Directing weekly operations to facilitate impactful ministry programs.</p>
+            <div class="tl-content">
+              <h3 class="tl-role">Toddler Ministry Co-Leader</h3>
+              <p class="tl-org">Joel Kids Ministry</p>
+              <p class="tl-summary">Directing weekly operations to facilitate impactful ministry programs.</p>
               <ul class="exp-bullets">
                 <li>Involved in planning rundowns, special services, and curricular materials for the toddler ministry.</li>
                 <li>Directing weekly operations to facilitate impactful ministry programs.</li>
               </ul>
+              <div class="exp-media tl-media">
+                <img src="assets/JK.jpeg" alt="Joel Kids Ministry" class="exp-img">
+              </div>
             </div>
-          </div>
-        </div>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- Certifications & Research Section -->
     <section id="certifications" class="section">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Publications & Awards</span>
-          <h2 class="section-title">Certifications & Research</h2>
-        </div>
+        <header class="rsc-header reveal">
+          <h2 class="rsc-heading display-marker">
+            <span class="reveal-line" aria-label="Certifications &amp; Research">
+              <span class="reveal-text" aria-hidden="true">Certifications &amp; Research</span>
+              <span class="reveal-bar" aria-hidden="true"></span>
+            </span>
+          </h2>
+          <p class="rsc-intro">Three hardware prototypes, written up and accepted for conference presentation.</p>
+        </header>
 
-        <!-- ICOBAR Research Card (Untouched Original) -->
-        <div class="glass-card cert-card reveal">
-          <div class="exp-media">
-            <img src="assets/ICOBAR.jpeg" alt="ICOBAR Conference Paper" class="exp-img">
-          </div>
-          <div class="cert-content">
-            <div class="cert-badge">
-              <i class="fas fa-award"></i> Accepted in ICOBAR Conference (2025)
+        <ol class="rsc-list">
+          <!-- ICOBAR -->
+          <li class="rsc-item reveal">
+            <div class="rsc-media">
+              <div class="exp-media">
+                <img src="assets/ICOBAR.jpeg" alt="ICOBAR Conference Paper" class="exp-img">
+              </div>
             </div>
-            <h3>Smart Motorcycle Tire Monitoring System</h3>
-            <div class="exp-company">Research & Hardware Prototype</div>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-              Designed and engineered a non-invasive IoT prototype aimed at enhancing road safety and sustainable urban mobility by monitoring motorcycle tire deflation in real time.
-            </p>
-            <ul class="exp-bullets">
-              <li><strong>Non-Invasive Hardware Design:</strong> Integrated an ESP32 microcontroller with high-precision ultrasonic sensors to track tire-to-ground clearance anomalies without modifying existing vehicle components.</li>
-              <li><strong>Real-Time Telemetry & Alerting:</strong> Programmed a live buzzer module for immediate operator warnings alongside an automated Telegram Bot API integration for remote, instant puncture notifications.</li>
-              <li><strong>Paper Publication:</strong> Synthesized methodology and technical benchmarks into a peer-reviewed paper accepted for presentation at the ICOBAR 2025 conference.</li>
-            </ul>
-          </div>
-        </div>
+            <div class="rsc-body">
+              <p class="rsc-venue">
+                <span class="rsc-year tabular">2025</span>
+                <span class="rsc-conf">Accepted in ICOBAR Conference</span>
+              </p>
+              <h3 class="rsc-title">Smart Motorcycle Tire Monitoring System</h3>
+              <p class="rsc-kind">Research &amp; Hardware Prototype</p>
+              <p class="rsc-summary">
+                Designed and engineered a non-invasive IoT prototype aimed at enhancing road safety and sustainable urban mobility by monitoring motorcycle tire deflation in real time.
+              </p>
+              <ul class="exp-bullets">
+                <li><strong>Non-Invasive Hardware Design:</strong> Integrated an ESP32 microcontroller with high-precision ultrasonic sensors to track tire-to-ground clearance anomalies without modifying existing vehicle components.</li>
+                <li><strong>Real-Time Telemetry &amp; Alerting:</strong> Programmed a live buzzer module for immediate operator warnings alongside an automated Telegram Bot API integration for remote, instant puncture notifications.</li>
+                <li><strong>Paper Publication:</strong> Synthesized methodology and technical benchmarks into a peer-reviewed paper accepted for presentation at the ICOBAR 2025 conference.</li>
+              </ul>
+            </div>
+          </li>
 
-        <!-- ICCSCI Research Card with Image Carousel -->
-        <div class="glass-card cert-card reveal" style="margin-top: 2rem;">
-          <div class="exp-media">
-            <div class="carousel-container iccsci-carousel" id="iccsci-carousel">
-              <div class="carousel-slide active">
-                <img src="assets/ICCSCI.jpeg" alt="ICCSCI Conference Paper" class="exp-img">
-              </div>
-              <div class="carousel-slide">
-                <img src="assets/ICCSCI_Oral.jpeg" alt="ICCSCI Oral Presentation" class="exp-img">
-              </div>
+          <!-- ICCSCI, with image carousel -->
+          <li class="rsc-item reveal">
+            <div class="rsc-media">
+              <div class="exp-media">
+                <div class="carousel-container iccsci-carousel" id="iccsci-carousel">
+                  <div class="carousel-slide active">
+                    <img src="assets/ICCSCI.jpeg" alt="ICCSCI Conference Paper" class="exp-img">
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="assets/ICCSCI_Oral.jpeg" alt="ICCSCI Oral Presentation" class="exp-img">
+                  </div>
 
-              <div class="carousel-nav">
-                <button class="carousel-btn" id="iccsci-prev" data-carousel-prev aria-label="Previous Photo"><i class="fas fa-chevron-left"></i></button>
-                <div class="carousel-dots">
-                  <span class="dot active"></span>
-                  <span class="dot"></span>
+                  <div class="carousel-nav">
+                    <button class="carousel-btn" id="iccsci-prev" data-carousel-prev aria-label="Previous Photo"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-dots">
+                      <span class="dot active"></span>
+                      <span class="dot"></span>
+                    </div>
+                    <button class="carousel-btn" id="iccsci-next" data-carousel-next aria-label="Next Photo"><i class="fas fa-chevron-right"></i></button>
+                  </div>
                 </div>
-                <button class="carousel-btn" id="iccsci-next" data-carousel-next aria-label="Next Photo"><i class="fas fa-chevron-right"></i></button>
               </div>
             </div>
-          </div>
-          <div class="cert-content">
-            <div class="cert-badge">
-              <i class="fas fa-award"></i> Accepted in ICCSCI Conference (2026)
+            <div class="rsc-body">
+              <p class="rsc-venue">
+                <span class="rsc-year tabular">2026</span>
+                <span class="rsc-conf">Accepted in ICCSCI Conference</span>
+              </p>
+              <h3 class="rsc-title">Regression-Based Calibration for MQ Gas Sensors</h3>
+              <p class="rsc-kind">Research &amp; Hardware Prototype</p>
+              <p class="rsc-summary">
+                Developed semi-empirical electronic response calibration models for MQ gas sensors to translate analog voltage readings into precise PPM concentration metrics.
+              </p>
+              <ul class="exp-bullets">
+                <li><strong>Regression Modeling:</strong> Applied non-linear regression techniques to map raw sensor readings to accurate gas concentration metrics.</li>
+                <li><strong>IoT Integration:</strong> Deployed calibration formulas directly onto an ESP32 microcontroller for real-time edge processing, LCD display, and cloud data streaming</li>
+                <li><strong>Paper Publication:</strong> Synthesized data collection methodologies and calibration benchmarks into a research paper accepted for presentation at ICCSCI 2026.</li>
+              </ul>
             </div>
-            <h3>Regression-Based Calibration for MQ Gas Sensors</h3>
-            <div class="exp-company">Research & Hardware Prototype</div>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-              Developed semi-empirical electronic response calibration models for MQ gas sensors to translate analog voltage readings into precise PPM concentration metrics.
-            </p>
-            <ul class="exp-bullets">
-              <li><strong>Regression Modeling:</strong> Applied non-linear regression techniques to map raw sensor readings to accurate gas concentration metrics.</li>
-              <li><strong>IoT Integration:</strong> Deployed calibration formulas directly onto an ESP32 microcontroller for real-time edge processing, LCD display, and cloud data streaming</li>
-              <li><strong>Paper Publication:</strong> Synthesized data collection methodologies and calibration benchmarks into a research paper accepted for presentation at ICCSCI 2026.</li>
-            </ul>
-          </div>
-        </div>
+          </li>
 
-        <!-- ICORIS -->
-        <div class="glass-card cert-card reveal">
-          <div class="exp-media">
-            <img src="assets/ICORIS_LOGO.png" alt="ICORIS Conference" class="exp-img">
-          </div>
-          <div class="cert-content">
-            <div class="cert-badge">
-              <i class="fas fa-award"></i> Accepted in ICORIS Conference (2026) (Status: Accepted, Haven't Presented Yet)
+          <!-- ICORIS. Logo asset rather than a photo, so this row runs narrower. -->
+          <li class="rsc-item rsc-item--mark reveal">
+            <div class="rsc-media">
+              <div class="exp-media">
+                <img src="assets/ICORIS_LOGO.png" alt="ICORIS Conference" class="exp-img">
+              </div>
             </div>
-            <h3>AQI Monitoring System</h3>
-            <div class="exp-company">Research & Hardware Prototype</div>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-              Designed and engineered a real-time Air Quality Index (AQI) monitoring system that integrates multiple gas sensors and a particulate matter sensor to provide enviromantal data for a variety of pollutants.
-            </p>
-            <ul class="exp-bullets">
-              <li><strong>Multiple Sensor Implementation:</strong> Integrated an ESP32 microcontroller with multiple gas sensors, namely MQ-135 for NO2 and CO2, MQ-136 for SO2, MQ-131 for O3, MQ-7 for CO, and a PM2.5 for smoke detection.</li>
-              <li><strong>Real-Time Telemetry & Alerting:</strong> Integrated with Thingspeak Platform for live data visualization and historical analysis alongside an automated Telegram Bot API integration for remote, instant notifications.</li>
-              <li><strong>Paper Publication:</strong> Synthesized methodology and technical benchmarks into a peer-reviewed paper accepted for presentation at the ICORIS 2026 conference.</li>
-            </ul>
-          </div>
-        </div>
+            <div class="rsc-body">
+              <p class="rsc-venue">
+                <span class="rsc-year tabular">2026</span>
+                <span class="rsc-conf">Accepted in ICORIS Conference</span>
+              </p>
+              <p class="rsc-status">Status: Accepted, Haven't Presented Yet</p>
+              <h3 class="rsc-title">AQI Monitoring System</h3>
+              <p class="rsc-kind">Research &amp; Hardware Prototype</p>
+              <p class="rsc-summary">
+                Designed and engineered a real-time Air Quality Index (AQI) monitoring system that integrates multiple gas sensors and a particulate matter sensor to provide enviromantal data for a variety of pollutants.
+              </p>
+              <ul class="exp-bullets">
+                <li><strong>Multiple Sensor Implementation:</strong> Integrated an ESP32 microcontroller with multiple gas sensors, namely MQ-135 for NO2 and CO2, MQ-136 for SO2, MQ-131 for O3, MQ-7 for CO, and a PM2.5 for smoke detection.</li>
+                <li><strong>Real-Time Telemetry &amp; Alerting:</strong> Integrated with Thingspeak Platform for live data visualization and historical analysis alongside an automated Telegram Bot API integration for remote, instant notifications.</li>
+                <li><strong>Paper Publication:</strong> Synthesized methodology and technical benchmarks into a peer-reviewed paper accepted for presentation at the ICORIS 2026 conference.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 

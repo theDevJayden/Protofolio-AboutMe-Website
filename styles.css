@@ -538,7 +538,6 @@ ul {
 
 .spec-row--minor .spec-index {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  color: var(--muted);
 }
 
 .spec-row--minor .spec-title {
@@ -568,18 +567,128 @@ ul {
   background: var(--signal);
 }
 
-/* Experience Section */
-.experience-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+/* ==========================================================================
+   Experience
+   Vertical timeline: years sit in a fixed left column in tabular numerals,
+   a single signal rule runs down the spine, and each entry marks its point
+   on it. No cards, no glass, no calendar icons.
+   NOTE: .exp-media / .exp-img / .exp-bullets are shared with Certifications
+   and Projects, so those rules are left untouched below.
+   ========================================================================== */
+.exp-header {
+  max-width: 46ch;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 
-.exp-card {
+.exp-heading {
+  margin: 0 0 0.75rem;
+}
+
+.exp-intro {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--step-body);
+  line-height: 1.6;
+}
+
+.exp-timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tl-item {
+  position: relative;
   display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 2rem;
-  align-items: start;
+  grid-template-columns: clamp(7rem, 12vw, 10rem) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* The spine: one hairline down the gutter, with the signal reserved for the
+   node marking each entry. Stops at the last item so the line does not
+   trail into empty space. */
+.tl-item::before {
+  content: '';
+  position: absolute;
+  top: 0.6em;
+  bottom: 0;
+  left: calc(clamp(7rem, 12vw, 10rem) - clamp(1.25rem, 3vw, 2.5rem) / 2);
+  width: 1px;
+  background: var(--border-color);
+}
+
+.tl-item:last-child::before {
+  bottom: auto;
+  height: 100%;
+}
+
+.tl-item::after {
+  content: '';
+  position: absolute;
+  top: 0.45em;
+  left: calc(clamp(7rem, 12vw, 10rem) - clamp(1.25rem, 3vw, 2.5rem) / 2 - 3px);
+  width: 7px;
+  height: 7px;
+  background: var(--signal);
+}
+
+/* ---- Left column: dates ---- */
+/* The spine sits inside this column, half a gap before its right edge, so
+   right-aligned dates must stop short of it or the line cuts the text. */
+.tl-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 0.2rem;
+  padding-top: 0.15em;
+  padding-right: calc(clamp(1.25rem, 3vw, 2.5rem) / 2 + 0.85rem);
+}
+
+.tl-year {
+  font-family: var(--font-display);
+  font-stretch: semi-expanded;
+  font-weight: 700;
+  font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+  line-height: 1.2;
+  color: var(--paper);
+}
+
+.tl-duration {
+  color: var(--muted);
+  font-size: var(--step-meta);
+  line-height: 1.3;
+}
+
+/* ---- Right column: the entry ---- */
+.tl-role {
+  margin: 0 0 0.2rem;
+  font-size: clamp(1.1875rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.tl-org {
+  margin: 0 0 0.75rem;
+  color: var(--signal);
+  font-size: var(--step-body);
+  font-weight: 600;
+}
+
+.tl-summary {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: var(--step-body);
+  line-height: 1.65;
+}
+
+/* Wide enough that the centred carousel nav (141px) clears the expand button
+   (32px + 12px inset) instead of colliding with it. Below ~245px they overlap. */
+.tl-media {
+  max-width: 300px;
+  margin-top: clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .exp-media {
@@ -731,26 +840,138 @@ ul {
   border-radius: 2px;
 }
 
-/* Certifications & Research Section */
-.cert-card {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 2.5rem;
-  align-items: center;
+/* ==========================================================================
+   Certifications & Research
+   Alternating editorial rows: image and text swap sides down the list, so no
+   two consecutive entries read the same. Rows 1 and 2 carry photographs and
+   run wide; row 3 holds a logo mark and runs narrower.
+   NOTE: .exp-media / .exp-img / .exp-bullets are shared with Experience and
+   Projects, so those rules are left untouched.
+   ========================================================================== */
+.rsc-header {
+  max-width: 50ch;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 
-.cert-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.8rem;
-  background: var(--carbon-raised);
-  border: 1px solid var(--border-color);
+.rsc-heading {
+  margin: 0 0 0.75rem;
+}
+
+.rsc-intro {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--step-body);
+  line-height: 1.6;
+}
+
+.rsc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.rsc-item {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Alternate: even rows put the text first and the image second. Source order
+   stays image-then-text, so the reading order is unchanged. */
+.rsc-item:nth-child(even) .rsc-media {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.rsc-item:nth-child(even) .rsc-body {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* These are scanned certificates and papers: the text IS the content, so the
+   shared `cover` crop cannot apply here or it clips the paper title and the
+   signature lines. Scoped to .rsc-media so Experience and Projects keep
+   their own cropping behaviour. */
+.rsc-media .exp-media {
+  aspect-ratio: 4 / 3;
+  background: var(--carbon);
+}
+
+.rsc-media .exp-img {
+  object-fit: contain;
+}
+
+/* ---- Venue line: year in tabular numerals, conference beside it ---- */
+.rsc-venue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0 0 0.85rem;
+}
+
+.rsc-year {
+  font-family: var(--font-display);
+  font-stretch: expanded;
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1;
   color: var(--signal);
-  font-weight: 600;
+}
+
+.rsc-conf {
+  color: var(--paper);
   font-size: var(--step-meta);
-  border-radius: var(--radius-sm);
-  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+/* Honest status label, kept as plain text rather than a badge. */
+.rsc-status {
+  margin: -0.5rem 0 0.85rem;
+  color: var(--muted);
+  font-size: var(--step-meta);
+}
+
+.rsc-title {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.875rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.rsc-kind {
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  font-size: var(--step-meta);
+}
+
+.rsc-summary {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--paper);
+  font-size: var(--step-body);
+  line-height: 1.65;
+}
+
+/* Row 3 carries a logo, not a photograph: the mark sits smaller so it does
+   not claim the same visual weight as the two photographed entries. */
+.rsc-item--mark {
+  grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+  border-bottom: none;
+}
+
+.rsc-item--mark .exp-media {
+  aspect-ratio: 1 / 1;
+  background: var(--carbon);
+}
+
+.rsc-item--mark .exp-img {
+  object-fit: contain;
+  padding: clamp(1rem, 3vw, 2rem);
 }
 
 /* Projects Section */
@@ -1129,13 +1350,59 @@ footer {
     gap: clamp(1.25rem, 3vw, 2rem);
   }
 
-  .exp-card, .cert-card {
+  /* Research rows stack: the alternating swap is meaningless in one column,
+     so every entry falls back to image above text. */
+  .rsc-item,
+  .rsc-item--mark {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .rsc-item:nth-child(even) .rsc-media {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .rsc-item:nth-child(even) .rsc-body {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .rsc-item--mark .exp-media {
+    max-width: 240px;
   }
 
   .exp-media {
     max-width: 100%;
     aspect-ratio: 16 / 9;
+  }
+
+  /* Timeline: the date column collapses above the entry, and the spine moves
+     to the far left so it still reads as one continuous line. */
+  .tl-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding-left: 1.25rem;
+  }
+
+  .tl-item::before {
+    left: 0;
+  }
+
+  .tl-item::after {
+    left: -3px;
+  }
+
+  .tl-meta {
+    flex-direction: row;
+    align-items: baseline;
+    text-align: left;
+    gap: 0.6rem;
+    padding-top: 0;
+  }
+
+  .tl-media {
+    max-width: 100%;
   }
 }
 
