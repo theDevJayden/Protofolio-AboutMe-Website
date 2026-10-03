@@ -34,20 +34,28 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Active Link Highlight on Scroll
+  // The reference point is a line a third of the way down the viewport, not
+  // the scroll offset itself. Comparing against the raw scroll position makes
+  // the last section unreachable: its window starts below the maximum scroll,
+  // so it could never activate.
   const sections = document.querySelectorAll('section[id]');
   window.addEventListener('scroll', () => {
-    const scrollY = window.pageYOffset;
-    sections.forEach(current => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 100;
-      const sectionId = current.getAttribute('id');
-      const link = document.querySelector(`.nav-menu a[href*=${sectionId}]`);
+    const reference = window.pageYOffset + window.innerHeight / 3;
+    let current = null;
 
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        if (link) link.classList.add('active');
-      } else {
-        if (link) link.classList.remove('active');
-      }
+    sections.forEach(section => {
+      if (reference >= section.offsetTop) current = section;
+    });
+
+    // At the very bottom, the shortest last section may still not reach the
+    // reference line, so pin it there.
+    const atBottom = window.pageYOffset + window.innerHeight
+      >= document.documentElement.scrollHeight - 2;
+    if (atBottom) current = sections[sections.length - 1];
+
+    const activeId = current ? current.getAttribute('id') : null;
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + activeId);
     });
   });
 
@@ -150,14 +158,30 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // Dots are decorative spans in the markup but behave as controls, so they
+    // need a role, a tab stop and key activation to exist for keyboard users.
     dots.forEach((dot, i) => {
-      dot.addEventListener('click', (e) => {
+      dot.setAttribute('role', 'button');
+      dot.setAttribute('tabindex', '0');
+      dot.setAttribute('aria-label', 'Show photo ' + (i + 1) + ' of ' + slides.length);
+
+      const select = (e) => {
         e.stopPropagation();
         e.preventDefault();
         showSlide(i);
         startAutoPlay();
+      };
+
+      dot.addEventListener('click', select);
+      dot.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') select(e);
       });
     });
+
+    // Autoplay paused on mouseenter only, which excluded keyboard and touch
+    // users. Pause whenever focus enters the carousel as well.
+    container.addEventListener('focusin', stopAutoPlay);
+    container.addEventListener('focusout', startAutoPlay);
 
     // Touch Swipe Support for Mobile
     let touchStartX = 0;
@@ -226,7 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('lightbox-close');
     const backdrop = document.getElementById('lightbox-backdrop');
 
-    function openLightbox(src, altText) {
+    let lastFocused = null;
+
+    function openLightbox(src, altText, trigger) {
+      lastFocused = trigger || document.activeElement;
       activeCarousels.forEach(c => c && c.stopAutoPlay());
       lightboxImg.src = src;
       lightboxImg.alt = altText || '';
@@ -241,6 +268,11 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      // The modal transitions from visibility:hidden; focus() on a still-hidden
+      // element silently fails, so move focus on the next frame.
+      requestAnimationFrame(() => {
+        if (closeBtn) closeBtn.focus();
+      });
     }
 
     function closeLightbox() {
@@ -248,6 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       activeCarousels.forEach(c => c && c.startAutoPlay());
+      // Return focus to whatever opened the dialog.
+      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
     }
 
     // Event listeners for close triggers
@@ -269,10 +303,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Close on Escape key press
+    // Close on Escape, and keep Tab inside the dialog while it is open:
+    // without this, focus walked into the page hidden behind the overlay.
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
+      if (!modal.classList.contains('active')) return;
+
+      if (e.key === 'Escape') {
         closeLightbox();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        const focusables = modal.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     });
 
@@ -298,9 +351,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       wrapper.appendChild(expandBtn);
 
-      // Trigger lightbox on wrapper/img/button click
-      wrapper.addEventListener('click', (e) => {
-        openLightbox(img.src, img.alt);
+      // The button is the real control: it is focusable, so putting the handler
+      // here makes Enter/Space work. The wrapper keeps a click handler for
+      // pointer users clicking the image itself.
+      expandBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openLightbox(img.src, img.alt, expandBtn);
+      });
+
+      wrapper.addEventListener('click', () => {
+        openLightbox(img.src, img.alt, expandBtn);
       });
     });
   }

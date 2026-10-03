@@ -1210,7 +1210,8 @@ ul {
   transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
-.contact-link:hover {
+.contact-link:hover,
+.contact-link:focus-visible {
   color: var(--signal);
   border-color: var(--signal);
 }
@@ -1344,7 +1345,11 @@ ul {
   box-shadow: var(--shadow-sm);
 }
 
-.lightbox-wrapper:hover .lightbox-expand-btn {
+/* Hover-only reveal hid this control from keyboard users, who could focus a
+   button they could not see. Focus reveals it on the same terms as hover. */
+.lightbox-wrapper:hover .lightbox-expand-btn,
+.lightbox-wrapper:focus-within .lightbox-expand-btn,
+.lightbox-expand-btn:focus-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
@@ -1367,13 +1372,19 @@ ul {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  /* visibility is stepped, not eased: delaying it by the fade duration keeps
+     the close animation intact. Transitioning it like opacity left the dialog
+     computed as `hidden` for the whole duration, and a hidden element cannot
+     receive focus, so focus() silently failed on open. */
+  transition: opacity var(--transition-normal), visibility 0s linear 0.32s;
 }
 
 .lightbox-modal.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  /* On open, visibility flips immediately so the dialog is focusable at once. */
+  transition: opacity var(--transition-normal), visibility 0s linear 0s;
 }
 
 .lightbox-backdrop {
@@ -1487,13 +1498,23 @@ ul {
     grid-row: 2;
   }
 
-  .rsc-item--mark .exp-media {
-    max-width: 240px;
-  }
-
+  /* The shared rule lets media fill the whole stacked column, which at tablet
+     width means a 700px+ image. Cap each context so the media stays a figure
+     beside its text rather than a full-bleed slab. max-width never upscales,
+     so at 390px the narrower columns (330/350) still win. */
   .exp-media {
     max-width: 100%;
     aspect-ratio: 16 / 9;
+  }
+
+  .rsc-media .exp-media {
+    max-width: 480px;
+  }
+
+  /* Declared after the rule above: equal specificity, so source order decides
+     and the logo keeps its smaller size. */
+  .rsc-item--mark .exp-media {
+    max-width: 240px;
   }
 
   /* Timeline: the date column collapses above the entry, and the spine moves
@@ -1521,7 +1542,7 @@ ul {
   }
 
   .tl-media {
-    max-width: 100%;
+    max-width: 380px;
   }
 }
 
